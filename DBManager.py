@@ -73,7 +73,7 @@ class DBManager:
         query = """
                SELECT name 
                FROM vacancies
-               WHERE name ILIKE '%{word}%'
+               WHERE name LIKE '%{word}%'
                ORDER BY name;
                """
         with self.conn.cursor() as cur:
