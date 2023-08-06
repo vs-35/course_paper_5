@@ -73,13 +73,13 @@ class DBManager:
         query = """
                SELECT name 
                FROM vacancies
-               WHERE name LIKE '%{word}%'
+               WHERE title LIKE '%{word}%'
                ORDER BY name;
                """
-        with self.conn.cursor() as cur:
-            cur.execute(query)
-            results = cur.fetchall()
-            # return results
+        with self.conn.cursor() as cursor:
+            cursor.execute(query)
+            return cursor.fetchall()
+
 
             for name, employer, id, salary, url in results:
                 print(f"компания: {employer}, вакансия: {name}, зарплата: {salary}, ссылка: {url}")
