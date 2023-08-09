@@ -70,7 +70,7 @@ class DBManager:
 
     def get_vacancies_with_keyword(self, word: str):
         """Получает список всех вакансий, в названии которых содержатся переданные в метод слова, например 'python'."""
-        query = """
+        query = f"""
                SELECT name, salary, url
                FROM vacancies
                WHERE name LIKE '%{word}%'
@@ -83,4 +83,6 @@ class DBManager:
             for name, employer, id, salary, url in cursor.fetchall:
                 print(f"компания: {employer}, вакансия: {name}, зарплата: {salary}, ссылка: {url}")
 
-    break
+    def close_connection(self):
+        if not self.conn.closed:
+            self.conn.close()
